@@ -4,9 +4,9 @@ Right now we have three pages (All, Details and Delete) that basically use the s
 
 ## The PhotoDetailsComponent
 
-First of all, let's create a `Components` folder under our `PhotoSharingApplication.Frontend.BlazorWebAssembly` project.
+First of all, let's create a `Components` folderhttps://github.com/AdrienTorris/awesome-blazor#libraries--extensions under our `PhotoSharingApplication.Frontend.BlazorWebAssembly` project.
 
-In the `Components` folder, create a new `Razor Component` called  `PhotoDetailsComponent.vue`.
+In the `Components` folder, create a new `Razor Component` called  `PhotoDetailsComponent.razor`.
 
 Now cut the `MatCard` of the `AllPhotos` component and paste it in the `PhotoDetailsComponent` component.
 

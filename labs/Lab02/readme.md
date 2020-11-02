@@ -266,7 +266,7 @@ namespace PhotoSharingApplication.Frontend.Infrastructure.Repositories.Memory {
 
 I know, I know, it's a very naive implementation, but it's just to have something working so that we can see some action in the UI, we're going to replace it with something better later anyway.
 
-Our last step is to plug this implementation in our application, so that the PhotoService can use it. We do this simply by registering this class as a service during startup.
+Our last step is to plug this implementation in our application, so that the PhotosService can use it. We do this simply by registering this class as a service during startup.
 
 - On the `Solution Explorer`, right click on the `Dependencies` folder of the `PhotoSharingApplication.Frontend.BlazorWebAssembly` project
 - Select `Add Project Reference`
@@ -340,7 +340,7 @@ In the code, we want to define a photo of type Photo (the model that our form is
     }
 
     private async Task HandleValidSubmit() {
-        await photoService.UploadAsync(photo);
+        await photosService.UploadAsync(photo);
     }
 }
 ```
@@ -361,7 +361,7 @@ Then we can use it like this:
 
 ```cs
 private async Task HandleValidSubmit() {
-  await photoService.UploadAsync(photo);
+  await photosService.UploadAsync(photo);
   navigationManager.NavigateTo("/photos/all");
 }
 ```

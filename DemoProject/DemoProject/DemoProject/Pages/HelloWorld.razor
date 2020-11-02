@@ -1,0 +1,32 @@
+﻿@page "/hello-world"
+
+Hallo wereld!
+ 
+data binding
+
+titel: @Title
+
+<button @onclick="ChangeTitle">Verander titel</button>
+<button @onclick="AddFramework">Voeg framework toe</button>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Naam</th>
+			<th>Cijfer</th>
+			<th>Logo</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var framework in Frameworks)
+		{
+			<tr>
+				<td>@framework.Id</td>
+				<td>@framework.Name</td>
+				<td>@framework.Grade</td>
+				<td><img src="@framework.Logo"></td>
+			</tr>
+		}
+	</tbody>
+</table>

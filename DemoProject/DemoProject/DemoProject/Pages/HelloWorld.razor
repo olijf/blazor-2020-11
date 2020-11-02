@@ -3,19 +3,24 @@
 <h1>Frameworks</h1>
 
 <EditForm Model="NewFramework" OnValidSubmit="AddFramework">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 
     <ol>
         <li>
             <label>Naam:</label>
-            <input @bind-value="NewFramework.Name">
+			<InputText  @bind-Value="NewFramework.Name" />
+			<ValidationMessage For="@(() => NewFramework.Name)" />
         </li>
         <li>
             <label>Cijfer:</label>
-            <input @bind-value="NewFramework.Grade">
+            <InputNumber @bind-Value="NewFramework.Grade" />
+            <ValidationMessage For="@(() => NewFramework.Grade)" />
         </li>
         <li>
             <label>Logo:</label>
-            <input @bind-value="NewFramework.Logo">
+            <InputText @bind-Value="NewFramework.Logo" />
+            <ValidationMessage For="@(() => NewFramework.Logo)" />
         </li>
         <li>
             <button>Voeg framework toe</button>

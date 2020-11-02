@@ -1,3 +1,4 @@
+using DemoProject.Repositories;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace DemoProject
 			builder.RootComponents.Add<App>("#app");
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+			builder.Services.AddScoped<IFrameworkRepository, FrameworkMemoryRepository>();
 
 			await builder.Build().RunAsync();
 		}

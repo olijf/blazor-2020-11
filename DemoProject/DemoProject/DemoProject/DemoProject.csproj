@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\HelloWorld.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\HelloWorld.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.2.20475.17" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.2.20475.5" />

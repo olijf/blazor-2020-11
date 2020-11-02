@@ -1,13 +1,32 @@
 ﻿@page "/hello-world"
 
-Hallo wereld!
- 
-data binding
+<h1>Frameworks</h1>
 
-titel: @Title
+<EditForm Model="NewFramework" OnValidSubmit="AddFramework">
 
-<button @onclick="ChangeTitle">Verander titel</button>
-<button @onclick="AddFramework">Voeg framework toe</button>
+    <ol>
+        <li>
+            <label>Naam:</label>
+            <input @bind-value="NewFramework.Name">
+        </li>
+        <li>
+            <label>Cijfer:</label>
+            <input @bind-value="NewFramework.Grade">
+        </li>
+        <li>
+            <label>Logo:</label>
+            <input @bind-value="NewFramework.Logo">
+        </li>
+        <li>
+            <button>Voeg framework toe</button>
+        </li>
+    </ol>
+
+	@NewFramework.Name krijgt een @NewFramework.Grade
+
+</EditForm>
+
+
 
 <table>
 	<thead>

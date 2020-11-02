@@ -1,4 +1,5 @@
 using DemoProject.Repositories;
+using MatBlazor;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,16 @@ namespace DemoProject
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 			builder.Services.AddScoped<IFrameworkRepository, FrameworkMemoryRepository>();
+
+			builder.Services.AddMatToaster(config =>
+			{
+				config.Position = MatToastPosition.BottomRight;
+				config.PreventDuplicates = true;
+				config.NewestOnTop = true;
+				config.ShowCloseButton = true;
+				config.MaximumOpacity = 95;
+				config.VisibleStateDuration = 3000;
+			});
 
 			await builder.Build().RunAsync();
 		}

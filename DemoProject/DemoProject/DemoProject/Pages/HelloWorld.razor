@@ -3,14 +3,14 @@
 <h1>Frameworks</h1>
 
 <EditForm Model="NewFramework" OnValidSubmit="AddFramework">
-	<DataAnnotationsValidator />
-	<ValidationSummary />
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
     <ol>
         <li>
             <label>Naam:</label>
-			<InputText  @bind-Value="NewFramework.Name" />
-			<ValidationMessage For="@(() => NewFramework.Name)" />
+            <InputText @bind-Value="NewFramework.Name" />
+            <ValidationMessage For="@(() => NewFramework.Name)" />
         </li>
         <li>
             <label>Cijfer:</label>
@@ -27,30 +27,28 @@
         </li>
     </ol>
 
-	@NewFramework.Name krijgt een @NewFramework.Grade
+    @NewFramework.Name krijgt een @NewFramework.Grade
 
 </EditForm>
 
-
-
 <table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Naam</th>
-			<th>Cijfer</th>
-			<th>Logo</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var framework in Frameworks)
-		{
-			<tr>
-				<td>@framework.Id</td>
-				<td>@framework.Name</td>
-				<td>@framework.Grade</td>
-				<td><img src="@framework.Logo"></td>
-			</tr>
-		}
-	</tbody>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naam</th>
+            <th>Cijfer</th>
+            <th>Logo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var framework in Frameworks)
+        {
+            <tr>
+                <td>@framework.Id</td>
+                <td>@framework.Name</td>
+                <td>@framework.Grade</td>
+                <td><img src="@framework.Logo"></td>
+            </tr>
+        }
+    </tbody>
 </table>

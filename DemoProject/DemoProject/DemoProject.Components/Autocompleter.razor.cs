@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace DemoProject.Shared
+namespace DemoProject.Components
 {
     public partial class Autocompleter<TItem>
     {
@@ -17,6 +17,9 @@ namespace DemoProject.Shared
         public IEnumerable<AutocompleterItem> Data { get; set; }
 
         public List<AutocompleterItem> Suggestions { get; set; }
+
+        [Parameter]
+        public RenderFragment<AutocompleterItem> ItemTemplate { get; set; }
 
         [Parameter]
         public EventCallback OnSelectCallback { get; set; }

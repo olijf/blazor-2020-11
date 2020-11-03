@@ -3,7 +3,11 @@
 
 <h2>Autocompleter</h2>
 
-<Autocompleter Data="FrameworkItems" OnSelectCallback="HandleItemSelect" />
+<Autocompleter Data="FrameworkItems" OnSelectCallback="HandleItemSelect">
+    <ItemTemplate>
+        <li class="@(context.IsHighlighted ? "highlight" : "")">@context.Item.Name krijgt een @context.Item.Grade</li>
+    </ItemTemplate>
+</Autocompleter>
 
 <h1>Frameworks</h1>
 

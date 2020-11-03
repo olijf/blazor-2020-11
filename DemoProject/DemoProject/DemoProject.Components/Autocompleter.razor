@@ -10,7 +10,14 @@
     {
         @foreach (var suggestion in Suggestions)
         {
-            <li class="@(suggestion.IsHighlighted ? "highlight" : "")">@suggestion.Text - @suggestion.IsHighlighted</li>
+            if (ItemTemplate != null)
+            {
+                @ItemTemplate(suggestion)
+            }
+            else
+            {
+                <li>@suggestion.Text</li>
+            }
         }
     }
 </ul>

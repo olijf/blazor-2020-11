@@ -1,4 +1,5 @@
 using Bunit;
+using DemoProject.Components;
 using DemoProject.Shared;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -75,6 +76,17 @@ namespace DemoProject.Tests
             }, sut.Suggestions);
         }
 
+
+        //[DataTestMethod]
+        //[DataRow("m", new List<Autocompleter<Car>.AutocompleterItem>()
+        //{
+
+        //})]
+        //public void MyTestMethod(string query, IEnumerable<Autocompleter<Car>.AutocompleterItem>)
+        //{
+
+        //}
+
         [TestMethod]
         public void AutocompleteShouldHandleNulLDataGracefully()
         {
@@ -93,6 +105,8 @@ namespace DemoProject.Tests
 
             Assert.IsNull(sut.Suggestions);
         }
+
+
 
         [TestMethod]
         public void NextShouldHighlightTheFirstItem()
@@ -132,5 +146,6 @@ namespace DemoProject.Tests
             Assert.IsTrue(sut.Suggestions[0].IsHighlighted);
             Assert.AreEqual(1, sut.Suggestions.Count(x => x.IsHighlighted));
         }
+
     }
 }

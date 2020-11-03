@@ -5,3 +5,9 @@ DemoProject/DemoProject/.vs/**/*
 DemoProject/DemoProject/DemoProject.Tests/bin
 DemoProject/DemoProject/DemoProject.Tests/obj
 
+DemoProject/DemoProject/DemoProject.Backend/bin
+DemoProject/DemoProject/DemoProject.Backend/obj
+DemoProject/DemoProject/DemoProject.Shared/bin
+DemoProject/DemoProject/DemoProject.Shared/obj
+DemoProject/DemoProject/DemoProject.Components/bin
+DemoProject/DemoProject/DemoProject.Components/obj

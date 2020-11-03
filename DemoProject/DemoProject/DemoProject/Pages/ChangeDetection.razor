@@ -1,0 +1,29 @@
+﻿@page "/change-detection"
+@using System.Threading;
+
+<h1>Change detection counter</h1>
+
+Counter: @Counter
+
+
+<button @onclick="StartCounting">Start counting</button>
+<button @onclick="DoNothing">Doe niks</button>
+
+@code {
+    public int Counter { get; set; }
+
+    void StartCounting()
+    {
+        new Timer(new TimerCallback(_ =>
+        {
+            Counter++;
+            Console.WriteLine("Counter is nu " + Counter);
+            StateHasChanged();
+        }), null, 1000, 1000);
+    }
+
+    void DoNothing()
+    {
+
+    }
+} 

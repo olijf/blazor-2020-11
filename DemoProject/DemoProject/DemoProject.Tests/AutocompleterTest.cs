@@ -1,5 +1,6 @@
 using Bunit;
 using DemoProject.Shared;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace DemoProject.Tests
     {
         Autocompleter<Car> sut;
         List<Autocompleter<Car>.AutocompleterItem> dataItems;
+        KeyboardEventArgs keyArgs;
 
         [TestInitialize]
         public void Init()
         {
+            keyArgs = new KeyboardEventArgs() { Key = "r" };
+
             var data = new List<Car>()
             {
                 new Car() { Id = 4, Make = "Opel", Model = "Astra" },
@@ -37,7 +41,7 @@ namespace DemoProject.Tests
         public void AutocompleteWithBasicQueryAndSuggestions()
         {
             sut.Query = "e";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             Assert.AreEqual(2, sut.Suggestions.Count);
             Assert.AreEqual("Opel Astra", sut.Suggestions[0].Text);
@@ -48,7 +52,7 @@ namespace DemoProject.Tests
         public void AutocompleteShouldSuggestWithCaseInsensitiveQuery()
         {
             sut.Query = "E";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             Assert.AreEqual(2, sut.Suggestions.Count);
             Assert.AreEqual("Opel Astra", sut.Suggestions[0].Text);
@@ -59,7 +63,7 @@ namespace DemoProject.Tests
         public void AutocompleteShouldSuggestWithCaseInsensitiveValues()
         {
             sut.Query = "m";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             CollectionAssert.AreEquivalent(new List<Autocompleter<Car>.AutocompleterItem>()
             {
@@ -73,7 +77,7 @@ namespace DemoProject.Tests
         {
             sut.Data = null;
             sut.Query = "m";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             Assert.IsNull(sut.Suggestions);
         }
@@ -82,7 +86,7 @@ namespace DemoProject.Tests
         public void AutocompleteShouldHandleNulLQueryGracefully()
         {
             sut.Query = null;
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             Assert.IsNull(sut.Suggestions);
         }
@@ -91,7 +95,7 @@ namespace DemoProject.Tests
         public void NextShouldHighlightTheFirstItem()
         {
             sut.Query = "m";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
             sut.Next();
 
             Assert.IsTrue(sut.Suggestions[0].IsHighlighted);
@@ -102,7 +106,7 @@ namespace DemoProject.Tests
         public void NextShouldHighlightTheNextItem()
         {
             sut.Query = "m";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
             sut.Next();
             sut.Next();
 
@@ -114,7 +118,7 @@ namespace DemoProject.Tests
         public void NextShouldHighlightBeyondTheLastItem()
         {
             sut.Query = "m";
-            sut.Autocomplete();
+            sut.Autocomplete(keyArgs);
 
             foreach (var item in sut.Suggestions)
             {

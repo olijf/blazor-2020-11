@@ -10,6 +10,7 @@ namespace DemoProject.Tests
     [TestClass]
     public class AutocompleterTest
     {
+        IRenderedComponent<Autocompleter<Car>> sutComponent;
         Autocompleter<Car> sut;
         List<Autocompleter<Car>.AutocompleterItem> dataItems;
         KeyboardEventArgs keyArgs;
@@ -33,8 +34,10 @@ namespace DemoProject.Tests
 
             var context = new Bunit.TestContext();
             //context.Services.addtrans
-            var sutComponent = context.RenderComponent<Autocompleter<Car>>(("Data", dataItems)); // system under test
+            sutComponent = context.RenderComponent<Autocompleter<Car>>(("Data", dataItems)); // system under test
             sut = sutComponent.Instance;
+
+            
         }
 
         [TestMethod]
@@ -75,7 +78,7 @@ namespace DemoProject.Tests
         [TestMethod]
         public void AutocompleteShouldHandleNulLDataGracefully()
         {
-            sut.Data = null;
+            sutComponent.SetParametersAndRender(("Data", null));
             sut.Query = "m";
             sut.Autocomplete(keyArgs);
 

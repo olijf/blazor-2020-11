@@ -1,5 +1,7 @@
 DemoProject/DemoProject/DemoProject/bin
 DemoProject/DemoProject/DemoProject/obj
 DemoProject/DemoProject/.vs
+DemoProject/DemoProject/.vs/**/*
 DemoProject/DemoProject/DemoProject.Tests/bin
 DemoProject/DemoProject/DemoProject.Tests/obj
+

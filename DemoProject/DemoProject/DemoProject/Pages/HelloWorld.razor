@@ -1,5 +1,10 @@
 ﻿@page "/hello-world"
 
+
+<h2>Autocompleter</h2>
+
+<Autocompleter Data="FrameworkItems" OnSelectCallback="HandleItemSelect" />
+
 <h1>Frameworks</h1>
 
 <EditForm Model="NewFramework" OnValidSubmit="AddFramework">
@@ -28,6 +33,9 @@
     </ol>
 
     @NewFramework.Name krijgt een @NewFramework.Grade
+
+    <InputFile OnChange="HandleFileChange"></InputFile>
+
 
 </EditForm>
 

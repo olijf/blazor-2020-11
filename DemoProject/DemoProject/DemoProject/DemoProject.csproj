@@ -6,10 +6,15 @@
 
   <ItemGroup>
     <None Remove="Pages\HelloWorld.razor.css" />
+    <None Remove="Shared\Autocompleter.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Pages\HelloWorld.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Shared\Autocompleter.razor.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

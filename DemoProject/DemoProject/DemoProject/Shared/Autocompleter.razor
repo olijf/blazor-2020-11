@@ -1,0 +1,16 @@
+﻿@typeparam TItem
+
+<input @bind-value="Query" @bind-value:event="oninput" @onkeyup="Autocomplete" @onkeydown="HandleKeyDown">
+<ul>
+    @if (Suggestions == null)
+    {
+        <li>Geen items</li>
+    }
+    else
+    {
+        @foreach (var suggestion in Suggestions)
+        {
+            <li class="@(suggestion.IsHighlighted ? "highlight" : "")">@suggestion.Text - @suggestion.IsHighlighted</li>
+        }
+    }
+</ul>

@@ -1,5 +1,6 @@
 using DemoProject.Backend.DataAccess;
 using DemoProject.Backend.Repositories;
+using DemoProject.Backend.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,7 @@ namespace DemoProject.Backend
             // dependency injection en globale instellingen
             services.AddDbContext<FrameworkDbContext>(options =>
             {
-                options.UseSqlServer("Server=.\\SQLEXPRESS; Database=frameworkdb; Integrated Security=true;");
+                options.UseSqlServer("Server=.; Database=frameworkdb; Integrated Security=true;");
             });
 
             services.AddScoped<IFrameworkRepository, FrameworkEntityRepository>();
@@ -40,6 +41,8 @@ namespace DemoProject.Backend
                         .AllowAnyMethod();
                 });
             });
+
+            services.AddGrpc();
 
             // ASP.NET Core 3.0 - System.Text.Json
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -74,6 +77,8 @@ namespace DemoProject.Backend
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<FrameworkGrpcService>().EnableGrpcWeb();
+
                 endpoints.MapControllers();
             });
         }

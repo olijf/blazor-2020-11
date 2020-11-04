@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "DemoProject.Services";
+
+import "google/protobuf/Timestamp.proto";
+import "google/protobuf/Empty.proto";
+
+service FrameworkService {
+	rpc Query(google.protobuf.Empty) returns (QueryReply);
+	rpc Add(AddRequest) returns (AddReply);
+}
+
+message QueryReply {
+	repeated Framework frameworks = 1;
+}
+
+message AddRequest {
+	Framework framework = 1;
+}
+
+message AddReply {
+	Framework updatedFramework = 1;
+}
+
+message Framework {
+	int32 id = 4;
+
+	string name = 1;
+
+	int32 grade = 2;
+
+	string logo = 3;
+}

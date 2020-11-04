@@ -71,13 +71,15 @@ namespace DemoProject.Backend
 
             app.UseHttpsRedirection();
 
-            app.UseCors("AllowAll");
-
             app.UseRouting();
+
+            app.UseGrpcWeb();
+
+            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<FrameworkGrpcService>().EnableGrpcWeb();
+                endpoints.MapGrpcService<FrameworkGrpcService>().EnableGrpcWeb().RequireCors("AllowAll");
 
                 endpoints.MapControllers();
             });

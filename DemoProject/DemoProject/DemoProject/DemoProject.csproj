@@ -6,9 +6,15 @@
 
   <ItemGroup>
     <None Remove="Pages\HelloWorld.razor.css" />
+    <None Remove="Pages\HelloWorldGrpc.razor.css" />
+    <None Remove="Protos\framework.proto" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Pages\HelloWorldGrpc.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Pages\HelloWorld.razor.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -16,6 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.13.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.33.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.33.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MatBlazor" Version="2.8.0-develop-021" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.2.20475.17" PrivateAssets="all" />
@@ -25,6 +38,12 @@
   <ItemGroup>
     <ProjectReference Include="..\DemoProject.Components\DemoProject.Components.csproj" />
     <ProjectReference Include="..\DemoProject.Shared\DemoProject.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\framework.proto">
+      <GrpcServices>Client</GrpcServices>
+    </Protobuf>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
 using DemoProject.Repositories;
+using DemoProject.Services;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
 using MatBlazor;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +33,17 @@ namespace DemoProject
 				config.ShowCloseButton = true;
 				config.MaximumOpacity = 95;
 				config.VisibleStateDuration = 3000;
+			});
+
+			builder.Services.AddSingleton(services =>
+			{
+				var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions()
+				{
+					HttpHandler = new GrpcWebHandler(new HttpClientHandler())
+				});
+
+				var client = new FrameworkService.FrameworkServiceClient(channel);
+				return client;
 			});
 
 			await builder.Build().RunAsync();

@@ -1,11 +1,11 @@
 ﻿using DemoProject.Components;
-using DemoProject.Models;
 using DemoProject.Repositories;
 using DemoProject.Shared;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DemoProject.Pages
 {
@@ -24,10 +24,10 @@ namespace DemoProject.Pages
         
 
         // lifecycle method
-        protected override void OnInitialized()
+        protected async override Task OnInitializedAsync()
         {
-            Console.WriteLine("Hallo!");
-            Frameworks = FrameworkRepository.Query();
+            Console.WriteLine("Hallo vanaf rest repo!");
+            Frameworks = await FrameworkRepository.Query();
             FrameworkItems = Frameworks.Select(x => new Autocompleter<FrameworkModel>.AutocompleterItem()
             {
                 Text = $"{x.Name}",

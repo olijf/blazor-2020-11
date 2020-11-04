@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DemoProject.Backend
@@ -27,7 +29,27 @@ namespace DemoProject.Backend
 
             services.AddScoped<IFrameworkRepository, FrameworkEntityRepository>();
 
-            services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.WithOrigins("https://localhost:44303")
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
+            // ASP.NET Core 3.0 - System.Text.Json
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+            });
+            //services.AddControllers().AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +67,8 @@ namespace DemoProject.Backend
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
 
             app.UseRouting();
 

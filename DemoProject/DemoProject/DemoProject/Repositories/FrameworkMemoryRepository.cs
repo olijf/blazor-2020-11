@@ -1,5 +1,4 @@
-﻿using DemoProject.Models;
-using DemoProject.Shared;
+﻿using DemoProject.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +17,21 @@ namespace DemoProject.Repositories
             new FrameworkModel() { Id = 16, Name = "Vue", Grade = 8, Logo = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"}
         };
 
-        public IEnumerable<FrameworkModel> Query()
+        public Task<IEnumerable<FrameworkModel>> Query()
         {
-            return Frameworks;
+            return Task.FromResult<IEnumerable<FrameworkModel>>(Frameworks);
         }
 
-        public FrameworkModel Get(int id)
+        public Task<FrameworkModel> Get(int id)
         {
-            
-            return Frameworks.Find(x => x.Id == id);
+            return Task.FromResult(Frameworks.Find(x => x.Id == id));
         }
 
-        public void Add(FrameworkModel newFramework)
+        public Task Add(FrameworkModel newFramework)
         {
             newFramework.Id = Frameworks.Max(x => x.Id) + 1;
             Frameworks.Add(newFramework);
+            return Task.CompletedTask;
         }
     }
 }

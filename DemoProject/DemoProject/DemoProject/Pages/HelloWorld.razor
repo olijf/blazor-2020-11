@@ -53,14 +53,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var framework in Frameworks)
+        @if (Frameworks == null)
         {
             <tr>
-                <td>@framework.Id</td>
-                <td>@framework.Name</td>
-                <td>@framework.Grade</td>
-                <td><img src="@framework.Logo"></td>
+                <td colspan="4">Nog geen data</td>
             </tr>
+        }
+        else
+        {
+            @foreach (var framework in Frameworks)
+            {
+                <tr>
+                    <td>@framework.Id</td>
+                    <td>@framework.Name</td>
+                    <td>@framework.Grade</td>
+                    <td><img src="@framework.Logo"></td>
+                </tr>
+            }
         }
     </tbody>
 </table>

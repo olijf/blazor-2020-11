@@ -14,6 +14,9 @@ namespace DemoProject.Backend.Controllers
     [ApiController]
     public class FrameworkController : ControllerBase
     {
+        public int MyProperty { get; } = 42;
+
+
         IFrameworkRepository frameworkRepository;
         public FrameworkController(IFrameworkRepository frameworkRepository)
         {

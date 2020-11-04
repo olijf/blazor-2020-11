@@ -1,12 +1,13 @@
-﻿using DemoProject.Models;
+﻿using DemoProject.Shared;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DemoProject.Repositories
 {
     public interface IFrameworkRepository
     {
-        void Add(FrameworkModel newFramework);
-        FrameworkModel Get(int id);
-        IEnumerable<FrameworkModel> Query();
+        Task Add(FrameworkModel newFramework);
+        Task<FrameworkModel> Get(int id);
+        Task<IEnumerable<FrameworkModel>> Query();
     }
 }

@@ -1,7 +1,54 @@
 ﻿@page "/"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Principal
+@using System.Security.Claims
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+	<Authorized>
+		Welkom terug @context.User.Identity.Name
+	</Authorized>
+	<NotAuthorized>
+		Ik ken u niet
+	</NotAuthorized>
+</AuthorizeView>
+
+
+
+@if (!User.IsAuthenticated)
+{
+	<p>U bent niet ingelogd</p>
+}
+else
+{
+	<p>Welkom terug @User.Name</p>
+
+	<table>
+		@foreach (var claim in Claims)
+		{
+			<tr>
+				<td>@claim.Subject</td>
+				<td>@claim.Type</td>
+				<td>@claim.Value</td>
+			</tr>
+		}
+	</table>
+}
+
+@code {
+
+	public IIdentity User { get; set; }
+
+	public IEnumerable<Claim> Claims { get; set; }
+
+	protected async override Task OnInitializedAsync()
+	{
+		var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+		User = state.User.Identity;
+		Claims = state.User.Claims;
+
+	}
+}

@@ -31,7 +31,7 @@ namespace DemoProject.Backend.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "onlybob")]
         public async Task<IActionResult> Post(FrameworkModel newFramework)
         {
 

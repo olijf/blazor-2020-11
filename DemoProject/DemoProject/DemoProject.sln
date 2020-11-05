@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProject.Backend", "Demo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProject.Shared", "DemoProject.Shared\DemoProject.Shared.csproj", "{1D4624DF-00AA-45AA-B3D2-DFF9F636EAD7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProject.IdentityServer", "DemoProject.IdentityServer\DemoProject.IdentityServer.csproj", "{87DD0074-1612-4EA1-9045-5B7C2C1A070D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1D4624DF-00AA-45AA-B3D2-DFF9F636EAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D4624DF-00AA-45AA-B3D2-DFF9F636EAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D4624DF-00AA-45AA-B3D2-DFF9F636EAD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DD0074-1612-4EA1-9045-5B7C2C1A070D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DD0074-1612-4EA1-9045-5B7C2C1A070D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DD0074-1612-4EA1-9045-5B7C2C1A070D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DD0074-1612-4EA1-9045-5B7C2C1A070D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

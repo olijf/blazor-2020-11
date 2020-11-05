@@ -1,6 +1,7 @@
 ﻿using DemoProject.Components;
 using DemoProject.Repositories;
 using DemoProject.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DemoProject.Pages
 {
+    [Authorize]
     public partial class HelloWorld : ComponentBase
     {
         [Inject]

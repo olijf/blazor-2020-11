@@ -22,7 +22,7 @@ namespace DemoProject
 			var builder = WebAssemblyHostBuilder.CreateDefault(args);
 			builder.RootComponents.Add<App>("#app");
 
-			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5001/") });
+			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5555/") });
 			builder.Services.AddScoped<IFrameworkRepository, FrameworkRestRepository>();
 
 			builder.Services.AddMatToaster(config =>
@@ -37,13 +37,18 @@ namespace DemoProject
 
 			builder.Services.AddSingleton(services =>
 			{
-				var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions()
+				var channel = GrpcChannel.ForAddress("https://localhost:5555", new GrpcChannelOptions()
 				{
 					HttpHandler = new GrpcWebHandler(new HttpClientHandler())
 				});
 
 				var client = new FrameworkService.FrameworkServiceClient(channel);
 				return client;
+			});
+			builder.Services.AddOidcAuthentication(options =>
+			{
+				builder.Configuration.Bind("Auth", options.ProviderOptions);
+				options.ProviderOptions.DefaultScopes.Add("demoprojectbackend");
 			});
 
 			await builder.Build().RunAsync();

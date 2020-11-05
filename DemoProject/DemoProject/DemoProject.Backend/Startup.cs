@@ -1,6 +1,7 @@
 using DemoProject.Backend.DataAccess;
 using DemoProject.Backend.Repositories;
 using DemoProject.Backend.Services;
+using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,11 +31,21 @@ namespace DemoProject.Backend
 
             services.AddScoped<IFrameworkRepository, FrameworkEntityRepository>();
 
+            services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:5999";
+                options.TokenValidationParameters.NameClaimType = JwtClaimTypes.Name;
+                options.Audience = "demoprojectbackend";
+            });
+            services.AddAuthorization(options =>
+            {
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder =>
                 {
-                    builder.WithOrigins("https://localhost:44303")
+                    builder.WithOrigins("https://localhost:5001")
                         .AllowAnyHeader()
                         .AllowCredentials()
                         .AllowAnyHeader()
@@ -72,6 +83,10 @@ namespace DemoProject.Backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseGrpcWeb();
 

@@ -1,5 +1,6 @@
 ﻿using DemoProject.Backend.Repositories;
 using DemoProject.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,13 @@ namespace DemoProject.Backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post(FrameworkModel newFramework)
         {
+
+			Console.WriteLine("User isauth: " + User.Identity.IsAuthenticated);
+            Console.WriteLine("User name: " + User.Identity.Name);
+
             await frameworkRepository.Add(newFramework);
             return Created("api/framework/" + newFramework.Id, newFramework);
         }

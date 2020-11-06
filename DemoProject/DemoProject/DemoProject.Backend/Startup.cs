@@ -1,6 +1,10 @@
 using DemoProject.Backend.DataAccess;
 using DemoProject.Backend.Repositories;
 using DemoProject.Backend.Services;
+using DemoProject.Shared;
+using DemoProject.Shared.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +34,7 @@ namespace DemoProject.Backend
 			});
 
 			services.AddScoped<IFrameworkRepository, FrameworkEntityRepository>();
+			services.AddTransient<IValidator<FluentFrameworkModel>, FluentFrameworkValidator>();
 
 			services.AddCors(options =>
 			{
@@ -64,10 +69,12 @@ namespace DemoProject.Backend
 			services.AddGrpc();
 
 			// ASP.NET Core 3.0 - System.Text.Json
-			services.AddControllers().AddNewtonsoftJson(options =>
-			{
-				options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
-			});
+			services.AddControllers()
+				.AddFluentValidation()
+				.AddNewtonsoftJson(options =>
+				{
+					options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+				});
 			//services.AddControllers().AddJsonOptions(options =>
 			//{
 			//    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;

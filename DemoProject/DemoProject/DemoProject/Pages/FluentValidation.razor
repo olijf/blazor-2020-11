@@ -1,0 +1,37 @@
+﻿@page "/fluent-validation"
+
+
+<h1>Frameworks</h1>
+
+<EditForm Model="NewFramework" OnValidSubmit="AddFramework">
+    <FluentValidationValidator DisableAssemblyScanning="@true" />
+    <ValidationSummary />
+
+    <ol>
+        <li>
+            <label>Naam:</label>
+            <InputText @bind-Value="NewFramework.Name" />
+            <ValidationMessage For="@(() => NewFramework.Name)" />
+        </li>
+        <li>
+            <label>Cijfer:</label>
+            <InputNumber @bind-Value="NewFramework.Grade" />
+            <ValidationMessage For="@(() => NewFramework.Grade)" />
+        </li>
+        <li>
+            <label>Logo:</label>
+            <InputText @bind-Value="NewFramework.Logo" />
+            <ValidationMessage For="@(() => NewFramework.Logo)" />
+        </li>
+        <li>
+            <button>Voeg framework toe</button>
+        </li>
+    </ol>
+
+    @NewFramework.Name krijgt een @NewFramework.Grade
+</EditForm>
+
+<button @onclick="AddFluentFramework">ADD</button>
+
+Response:
+<pre>@Response</pre>

@@ -1,5 +1,8 @@
 using DemoProject.Repositories;
 using DemoProject.Services;
+using DemoProject.Shared;
+using DemoProject.Shared.Validators;
+using FluentValidation;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using MatBlazor;
@@ -50,6 +53,7 @@ namespace DemoProject
 				builder.Configuration.Bind("Auth", options.ProviderOptions);
 				options.ProviderOptions.DefaultScopes.Add("demoprojectbackend");
 			});
+			builder.Services.AddTransient<IValidator<FluentFrameworkModel>, FluentFrameworkValidator>();
 
 			await builder.Build().RunAsync();
 		}

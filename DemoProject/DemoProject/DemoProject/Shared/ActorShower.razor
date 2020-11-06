@@ -1,0 +1,17 @@
+﻿<ul>
+	@foreach (var actor in Actors)
+	{
+		<li>actor shower: @actor.Name</li>
+	}
+</ul>
+
+@code {
+	[Parameter]
+	public List<ActorModel> Actors { get; set; }
+
+	protected override bool ShouldRender()
+	{
+		// slimme check
+		return Actors.Count % 5 == 0;
+	}
+}

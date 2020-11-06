@@ -1,0 +1,21 @@
+﻿@page "/js-interop"
+
+<h1>JavaScript interop</h1>
+
+<button @onclick="GetStringFromJs"></button>
+
+Sync result: @SyncResult
+
+<hr>
+
+
+<button @onclick="DoeWatIngewikkelders"></button>
+
+<dl>
+	<dt>Latitude:</dt>
+	<dd>@AsyncResult.Latitude</dd>
+	<dt>Longitude:</dt>
+	<dd>@AsyncResult.Longitude</dd>
+	<dt>Accuracy:</dt>
+	<dd>@AsyncResult.Accuracy</dd>
+</dl>
